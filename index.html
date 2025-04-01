@@ -34,18 +34,16 @@
         async function sendCommand(direction) {
             const espIP = document.getElementById("esp_ip").value;
             try {
-                const response = await fetch(`${espIP}/data`, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ command: direction })
+                const response = await fetch(`${espIP}/?data=${direction}~`, {
+                    method: "GET",
                 });
-                const result = await response.text();
-                document.getElementById("response").innerText = "Response: " + result;
+                document.getElementById("response").innerText = "Command sent: " + direction;
             } catch (error) {
                 document.getElementById("response").innerText = "Error: " + error;
             }
         }
     </script>
+    
 </body>
 </html>
 
