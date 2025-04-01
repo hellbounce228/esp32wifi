@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESP32 Controller</title>    
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles_314159.css">
+    <link rel="stylesheet" href="styles_314159.css">
+
+
+</head>
+<body>
+    <h1>ESP32 Controller</h1>
+    <label for="esp_ip">ESP32 IP Address:</label>
+    <input class='sigmainput' type="text" id="esp_ip" placeholder="Enter ESP32 IP..." value="http://192.168.">
+    
+    <div class="controls">  
+        <button class='blank'></button>
+        <button onclick="sendCommand('forward')">⬆️</button>
+        <button class='blank'></button>
+        <button onclick="sendCommand('left')">⬅️</button>
+        <button onclick="sendCommand('180')">🔃</button>
+        <button onclick="sendCommand('right')">➡️</button>
+        <button onclick="sendCommand('left90')">↙️</button>
+        <button onclick="sendCommand('reverse')">⬇️</button>
+        <button onclick="sendCommand('right90s')">↘️</button>
+
+    </div>
+
+    <p id="response"></p>
+
+    <script>
+        async function sendCommand(direction) {
+            const espIP = document.getElementById("esp_ip").value;
+            try {
+                const response = await fetch(`${espIP}/data`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ command: direction })
+                });
+                const result = await response.text();
+                document.getElementById("response").innerText = "Response: " + result;
+            } catch (error) {
+                document.getElementById("response").innerText = "Error: " + error;
+            }
+        }
+    </script>
+</body>
+</html>
+

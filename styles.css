@@ -1,0 +1,49 @@
+body {
+     text-align: center; 
+     font-family: Arial, sans-serif; 
+}
+
+.controls {
+     display: grid; 
+     grid-template-columns: 1fr 1fr 1fr; 
+     gap: 10px; 
+     width: 250px; 
+     margin: 20px auto; 
+    
+}
+.controls .blank{
+    background-color: #1a1a1a;
+    border: none;
+    cursor: auto;
+}
+.controls button { 
+    padding: 40px; 
+    font-size: 18px; 
+    cursor: pointer; 
+    border: 3px solid #9d0093;
+    background-color: #31002e;
+    transition: 0.3s ease-in-out;
+
+}
+
+.controls button:hover{ 
+    background-color: #31002e;
+    transform: scale(1.1); 
+    
+
+
+}
+
+#esp_ip {
+     width: 50%; 
+     max-width: 300px; 
+    }
+
+    
+@media screen and (max-width: 600px) {
+    .controls {
+        margin: 40px; 
+        margin-left: 40px;
+
+    }   
+}
